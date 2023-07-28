@@ -4,7 +4,7 @@
 import * as React from 'react'
 import {useState} from 'react'
 
-function Greeting({initialName}) {
+function Greeting({initialName = ''}) {
   // 💣 delete this variable declaration and replace it with a React.useState call
   const [name, setName] = useState(initialName)
 
