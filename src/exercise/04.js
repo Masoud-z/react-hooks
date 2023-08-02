@@ -6,19 +6,20 @@ import {useState} from 'react'
 
 function Board() {
   // 🐨 squares is the state for this component. Add useState for squares
-  const [squares, setSquares] = useState(Array(9).fill(null))
+  const [squares, setSquares] = useState(
+    () => JSON.parse(localStorage.getItem('squares')) || Array(9).fill(null),
+  )
 
   // 🐨 We'll need the following bits of derived state:
   // - nextValue ('X' or 'O')
   const nextValue = calculateNextValue(squares)
   const winner = calculateWinner(squares)
   const status = calculateStatus(winner, squares, nextValue)
+  localStorage.setItem('squares', JSON.stringify(squares))
 
   // - winner ('X', 'O', or null)
 
   // - status (`Winner: ${winner}`, `Scratch: Cat's game`, or `Next player: ${nextValue}`)
-
-  console.log('reRender')
 
   // 💰 I've written the calculations for you! So you can use my utilities
   // below to create these variables
