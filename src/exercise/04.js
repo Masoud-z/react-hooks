@@ -3,11 +3,13 @@
 
 import * as React from 'react'
 import {useState} from 'react'
+import {useLocalStorageState} from '../utils'
 
 function Board() {
   // 🐨 squares is the state for this component. Add useState for squares
-  const [squares, setSquares] = useState(
-    () => JSON.parse(localStorage.getItem('squares')) || Array(9).fill(null),
+  const [squares, setSquares] = useLocalStorageState(
+    'squares',
+    Array(9).fill(null),
   )
 
   // 🐨 We'll need the following bits of derived state:
@@ -15,7 +17,6 @@ function Board() {
   const nextValue = calculateNextValue(squares)
   const winner = calculateWinner(squares)
   const status = calculateStatus(winner, squares, nextValue)
-  localStorage.setItem('squares', JSON.stringify(squares))
 
   // - winner ('X', 'O', or null)
 
