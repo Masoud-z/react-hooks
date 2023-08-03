@@ -3,7 +3,6 @@
 
 import * as React from 'react'
 import {useLocalStorageState} from '../utils'
-import {useState} from 'react'
 
 function Board({onClick, squares}) {
   function renderSquare(i) {
